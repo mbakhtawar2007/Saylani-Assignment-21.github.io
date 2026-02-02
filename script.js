@@ -1,14 +1,12 @@
 class Stopwatch {
     constructor() {
-        // Time tracking
-        this.elapsedTime = 0; // in milliseconds
+        this.elapsedTime = 0;
         this.startTime = 0;
         this.pausedTime = 0;
         this.isRunning = false;
         this.intervalId = null;
         this.laps = [];
 
-        // DOM Elements
         this.minutesDisplay = document.getElementById('minutes');
         this.secondsDisplay = document.getElementById('seconds');
         this.millisecondsDisplay = document.getElementById('milliseconds');
@@ -19,22 +17,17 @@ class Stopwatch {
         this.lapList = document.getElementById('lapList');
         this.themeBtn = document.getElementById('themeBtn');
 
-        // Initialize
         this.init();
     }
 
     init() {
-        // Add event listeners
         this.startBtn.addEventListener('click', () => this.start());
         this.pauseBtn.addEventListener('click', () => this.pause());
         this.resetBtn.addEventListener('click', () => this.reset());
         this.lapBtn.addEventListener('click', () => this.recordLap());
         this.themeBtn.addEventListener('click', () => this.toggleTheme());
 
-        // Initialize theme from localStorage
         this.initializeTheme();
-
-        // Update display
         this.updateDisplay();
     }
 
@@ -44,12 +37,10 @@ class Stopwatch {
         this.isRunning = true;
         this.startTime = Date.now() - this.pausedTime;
 
-        // Update every 10ms for millisecond accuracy
         this.intervalId = setInterval(() => {
             this.update();
         }, 10);
 
-        // Update button states
         this.updateButtonStates();
     }
 
@@ -60,7 +51,6 @@ class Stopwatch {
         clearInterval(this.intervalId);
         this.pausedTime = this.elapsedTime;
 
-        // Update button states
         this.updateButtonStates();
     }
 
@@ -92,14 +82,11 @@ class Stopwatch {
 
     updateDisplay() {
         const totalMilliseconds = this.elapsedTime;
-
-        // Calculate MM:SS:MS
         const totalSeconds = Math.floor(totalMilliseconds / 1000);
         const minutes = Math.floor(totalSeconds / 60);
         const seconds = totalSeconds % 60;
         const milliseconds = Math.floor((totalMilliseconds % 1000) / 10);
 
-        // Update display with zero-padding
         this.minutesDisplay.textContent = String(minutes).padStart(2, '0');
         this.secondsDisplay.textContent = String(seconds).padStart(2, '0');
         this.millisecondsDisplay.textContent = String(milliseconds).padStart(2, '0');
@@ -122,7 +109,6 @@ class Stopwatch {
 
         if (this.laps.length === 0) return;
 
-        // Calculate differences between consecutive laps
         const lapDifferences = [];
         for (let i = 0; i < this.laps.length; i++) {
             if (i === 0) {
@@ -132,17 +118,14 @@ class Stopwatch {
             }
         }
 
-        // Find fastest and slowest lap
         const fastestLapIndex = lapDifferences.indexOf(Math.min(...lapDifferences));
         const slowestLapIndex = lapDifferences.indexOf(Math.max(...lapDifferences));
 
-        // Render lap items
         this.laps.forEach((lapTime, index) => {
             const lapDifference = lapDifferences[index];
             const lapItem = document.createElement('li');
             lapItem.className = 'lap-item';
 
-            // Highlight fastest and slowest
             if (index === fastestLapIndex && this.laps.length > 1) {
                 lapItem.style.borderLeftColor = '#28a745';
             } else if (index === slowestLapIndex && this.laps.length > 1) {
@@ -195,7 +178,6 @@ class Stopwatch {
     }
 }
 
-// Initialize stopwatch when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new Stopwatch();
 });
