@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="stopwatch-wrapper">
+            <h1>Stopwatch</h1>
+            
+            <!-- Theme Toggle -->
+            <div class="theme-toggle">
+                <button id="themeBtn" class="theme-btn" aria-label="Toggle dark/light mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+
+            <!-- Time Display -->
+            <div class="time-display">
+                <span id="minutes">00</span>:<span id="seconds">00</span>:<span id="milliseconds">00</span>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls">
+                <button id="startBtn" class="btn btn-start" aria-label="Start the stopwatch">
+                    Start
+                </button>
+                <button id="pauseBtn" class="btn btn-pause" aria-label="Pause the stopwatch" disabled>
+                    Pause
+                </button>
+                <button id="resetBtn" class="btn btn-reset" aria-label="Reset the stopwatch">
+                    Reset
+                </button>
+            </div>
+
+            <!-- Lap/Time Tracking -->
+            <div class="lap-section">
+                <button id="lapBtn" class="btn btn-lap" aria-label="Record a lap time" disabled>
+                    Lap
+                </button>
+                <ul id="lapList" class="lap-list" aria-label="List of recorded lap times">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

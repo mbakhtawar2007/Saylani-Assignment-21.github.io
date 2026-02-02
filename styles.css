@@ -1,0 +1,378 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --border-color: #e0e0e0;
+    --button-bg: #007bff;
+    --button-hover-bg: #0056b3;
+    --button-text: #ffffff;
+    --start-color: #28a745;
+    --start-hover: #1e7e34;
+    --pause-color: #ffc107;
+    --pause-hover: #e0a800;
+    --reset-color: #dc3545;
+    --reset-hover: #c82333;
+    --lap-color: #17a2b8;
+    --lap-hover: #117a8b;
+    --display-bg: #f8f9fa;
+    --display-border: #dee2e6;
+}
+
+body.dark-mode {
+    --bg-color: #1e1e1e;
+    --text-color: #ffffff;
+    --border-color: #444444;
+    --button-bg: #0056b3;
+    --button-hover-bg: #003d82;
+    --button-text: #ffffff;
+    --display-bg: #2d2d2d;
+    --display-border: #444444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.stopwatch-wrapper {
+    background-color: var(--bg-color);
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    padding: 40px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.theme-btn {
+    background: none;
+    border: 2px solid var(--border-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-btn:hover {
+    background-color: var(--button-bg);
+    border-color: var(--button-bg);
+    transform: scale(1.1);
+}
+
+.theme-icon {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* Time Display */
+.time-display {
+    background-color: var(--display-bg);
+    border: 3px solid var(--display-border);
+    border-radius: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 30px;
+    letter-spacing: 5px;
+    word-spacing: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    flex: 1;
+    min-width: 80px;
+    padding: 15px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-start {
+    background-color: var(--start-color);
+    color: var(--button-text);
+}
+
+.btn-start:hover:not(:disabled) {
+    background-color: var(--start-hover);
+}
+
+.btn-pause {
+    background-color: var(--pause-color);
+    color: #000000;
+}
+
+.btn-pause:hover:not(:disabled) {
+    background-color: var(--pause-hover);
+}
+
+.btn-reset {
+    background-color: var(--reset-color);
+    color: var(--button-text);
+}
+
+.btn-reset:hover:not(:disabled) {
+    background-color: var(--reset-hover);
+}
+
+/* Lap Section */
+.lap-section {
+    margin-top: 30px;
+}
+
+.btn-lap {
+    width: 100%;
+    background-color: var(--lap-color);
+    color: var(--button-text);
+}
+
+.btn-lap:hover:not(:disabled) {
+    background-color: var(--lap-hover);
+}
+
+.lap-list {
+    list-style: none;
+    margin-top: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.lap-item {
+    padding: 12px 15px;
+    background-color: var(--display-bg);
+    border-radius: 5px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    border-left: 4px solid var(--lap-color);
+    transition: all 0.3s ease;
+}
+
+.lap-item:hover {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+}
+
+.lap-number {
+    font-weight: bold;
+    color: var(--lap-color);
+    min-width: 60px;
+}
+
+.lap-number:hover {
+    color: var(--button-text);
+}
+
+.lap-time {
+    font-weight: 600;
+}
+
+/* Responsive Design */
+
+/* Tablets (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .stopwatch-wrapper {
+        padding: 50px 30px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .time-display {
+        font-size: 3.5rem;
+        padding: 35px 25px;
+    }
+
+    .btn {
+        min-width: 100px;
+        padding: 18px 25px;
+        font-size: 1.05rem;
+    }
+}
+
+/* Mobile devices (up to 768px) */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .stopwatch-wrapper {
+        padding: 30px 15px;
+        border-radius: 12px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .time-display {
+        font-size: 3rem;
+        padding: 30px 15px;
+        border-radius: 8px;
+    }
+
+    .controls {
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        min-width: 70px;
+        padding: 12px 15px;
+        font-size: 0.9rem;
+        flex: 1;
+    }
+
+    .lap-list {
+        max-height: 250px;
+    }
+
+    .lap-item {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Desktop (above 1024px) */
+@media (min-width: 1025px) {
+    .stopwatch-wrapper {
+        padding: 60px 40px;
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 40px;
+    }
+
+    .time-display {
+        font-size: 4.5rem;
+        padding: 45px 30px;
+        border-radius: 12px;
+    }
+
+    .btn {
+        min-width: 120px;
+        padding: 20px 30px;
+        font-size: 1.1rem;
+    }
+
+    .controls {
+        gap: 15px;
+    }
+}
+
+/* Scrollbar Styling */
+.lap-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.lap-list::-webkit-scrollbar-track {
+    background: var(--display-bg);
+    border-radius: 10px;
+}
+
+.lap-list::-webkit-scrollbar-thumb {
+    background: var(--button-bg);
+    border-radius: 10px;
+}
+
+.lap-list::-webkit-scrollbar-thumb:hover {
+    background: var(--button-hover-bg);
+}
+
+/* Focus states for accessibility */
+.btn:focus,
+.theme-btn:focus {
+    outline: 2px solid var(--button-bg);
+    outline-offset: 2px;
+}
+
+/* Animation for smooth transitions */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lap-item {
+    animation: fadeIn 0.3s ease;
+}
